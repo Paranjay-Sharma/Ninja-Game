@@ -6,7 +6,7 @@ var jump=0;
 var roofCount=0;
 var gameover,gameoverImg
 var win,winImg;
-var line;
+var line,line2;
 var un;
 function preload(){
 ninjaImg=loadImage("ninja.png");
@@ -42,24 +42,27 @@ background(bgImg);
   //}
 
   if (frameCount%60==0){      
-roof=createSprite(1270,200);
-roof.addImage(roofImg);
-roof.velocityX=-(10+jump/8);
-roof.scale=2.0;
-roof.y=Math.round(random(90,350));
-roofGroup.add(roof);
-//roof.debug=true;
+    roof=createSprite(1270,200,60,5);
+    roof.addImage(roofImg);
+    roof.velocityX=-(10+jump/8);
+    roof.scale=2.0;
+    roof.y=Math.round(random(90,350));
+    roofGroup.add(roof);
+    line2=createSprite(roof.x,roof.y,roof.width,60);
+   roof.debug=true;
+   roof.setCollider("rectangle",0,0,60,10)
 roof.lifetime=150;
 roofCount=roofCount+1;
   }
  if(keyDown("space")){
      ninja.y=ninja.y-30;
  } 
- if(ninja.collide(roofGroup)){
+ if(ninja.bounceOff(roofGroup)){
      jump=jump+1;
  }
  ninja.velocityY=10;
- ninja.setCollider("rectangle",0,0,100,100);
+ //ninja.debug=true
+ ninja.setCollider("circle",0,0,80);
  
 if (roofCount===50){
   win=createSprite(600,200);
@@ -74,7 +77,7 @@ if (roofCount===50){
   }
   line=createSprite(600,380,1200,2);
   line.visible=false;
-if (ninja.collide(line)|| ninja.x<0){
+if (ninja.bounce(line)|| ninja.x<0){
   gameover=createSprite(600,200);
   gameover.addImage(gameoverImg);
   ninja.visible=false;
@@ -91,7 +94,7 @@ console.log(roofCount);
  fill("green")
  strokeWeight(20)
  textSize(20);
- text("roof came= "+roofCount,500,50);
+ text("roof came= "+roofCount+"/50",500,50);
  text.depth=ninja.depth;
 drawSprites();
 }
