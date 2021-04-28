@@ -36,10 +36,7 @@ ninja.scale=0.5;
 
 function draw(){
 background(bgImg);
-//back.depth=back.depth-10;
-//if (back.x < 600){
-  //  back.x = back.width/2;
-  //}
+
 
   if (frameCount%60==0){      
     roof=createSprite(1270,200,60,5);
@@ -49,7 +46,7 @@ background(bgImg);
     roof.y=Math.round(random(90,350));
     roofGroup.add(roof);
     line2=createSprite(roof.x,roof.y,roof.width,60);
-   //roof.debug=true;
+   
    roof.setCollider("rectangle",0,0,60,10)
 roof.lifetime=150;
 roofCount=roofCount+1;
