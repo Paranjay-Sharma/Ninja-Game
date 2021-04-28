@@ -49,7 +49,7 @@ background(bgImg);
     roof.y=Math.round(random(90,350));
     roofGroup.add(roof);
     line2=createSprite(roof.x,roof.y,roof.width,60);
-   roof.debug=true;
+   //roof.debug=true;
    roof.setCollider("rectangle",0,0,60,10)
 roof.lifetime=150;
 roofCount=roofCount+1;
